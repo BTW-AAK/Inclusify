@@ -1,0 +1,61 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <script src="translate.js"></script>
+    <title>Inclusify</title>
+</head>
+<body>
+    <script type="module" src="milsymbol-2.0.0/src/milsymbol.js"></script>
+
+    <script type="importmap">
+        {"imports": {"@google/generative-ai": "https://esm.run/@google/generative-ai"}}
+      </script>
+      
+      <script type="module">
+        const genAI = new GoogleGenerativeAI("AIzaSyDHt49ArGg0gQZWevD3zNzOBQzKtcOTHmM");
+        
+        // async function run() {
+        //     // For text-only input, use the gemini-pro model
+        //     const model = genAI.getGenerativeModel({ model: "gemini-pro"});
+        //     const prompt = "Write a story about a magic backpack."
+        //     const result = await model.generateContent(prompt);
+        //     const response = await result.response;
+        //     const text = response.text();
+        //     console.log(text);
+    //   }
+    </script>
+    
+    <div id="tonediv">
+        <select name="Tone Selector" id="toneselect">
+        <option value="Formal">Neutral</option>
+      <option value="Formal">Formal</option>
+      <option value="Encouraging">Encouraging</option>
+      <option value="Friendly">Friendly</option>
+      <option value="Direct">Authoritative</option>
+      <option value="Sympathetic">Sympathetic</option>
+      <option value="Reflective">Reflective</option>
+      <option value="Optimistic">Optimistic</option>
+      <option value="Grateful">Grateful</option>
+        </select>
+      </div>
+<div id="InputContainer">
+    <input type="text" id="inputTextBox" name="inputTextBox" placeholder="Write here..."><br>
+</div>
+<div id="submit-button" > 
+    <button id="generateButton" onclick="run()">Submit</button>
+</div>
+
+
+
+
+
+
+
+
+
+
+
+</body>
+</html>
