@@ -7,7 +7,7 @@ def translate_to_inclusive(inputt="Who is the chairman"):
 
         defaults = {
         'model': 'models/text-bison-001',
-        'temperature': 0.1,
+        'temperature': 0.9,
         'candidate_count': 1,
         'top_k': 40,
         'top_p': 0.95,
@@ -18,13 +18,18 @@ def translate_to_inclusive(inputt="Who is the chairman"):
 
         prompt = f"""You are an inclusive language assistant if the input has non-inclusive language. Replace the specific non-inclusive word with inclusive words. do not change words unless necessary.
 
-        Example Input: Stewardess
-        Example Output: Flight Attendant 
-        Example Input 2: Blindly following
-        Example Output 2: Following aimlessly 
-        Example Input 3: chairman
-        Example Output 3: chairperson 
-        Input is: {inputt}
+        Example Input: "Stewardess"
+        Example Output: "Flight Attendant" 
+        Example Input 2: "Blindly following"
+        Example Output 2: "Following aimlessly" 
+        Example Input 3: "chairman"
+        Example Output 3: "chairperson" 
+        
+        If input is empty output is also empty
+        Example Input 4: ""
+        Example Output 4:  "Please Retry"
+
+        Input is: "{inputt}"
         Output is: 
         """
 
@@ -32,6 +37,8 @@ def translate_to_inclusive(inputt="Who is the chairman"):
         **defaults,
         prompt=prompt
         )
-        print(response.result)
+        print("Input:" inputt)
+        print("Result:" response.result)
+        
         return response.result
 
