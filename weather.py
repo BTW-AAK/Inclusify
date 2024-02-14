@@ -5,91 +5,78 @@ load_dotenv()
 def translate_to_inclusive(inputt="Who is the chairman"):
         genai.configure(api_key="AIzaSyDHt49ArGg0gQZWevD3zNzOBQzKtcOTHmM")
 
-        generation_config = {
-        "temperature": 0.5,
-        "top_p": 1,
-        "top_k": 1,
-        "max_output_tokens": 2048,
+        defaults = {
+        'model': 'models/text-bison-001',
+        'temperature': 0.1,
+        'candidate_count': 1,
+        'top_k': 20,
+        'top_p': 0.15,
+        'max_output_tokens': 1024,
+        'stop_sequences': [],
+        'safety_settings': [{"category":"HARM_CATEGORY_DEROGATORY","threshold":"BLOCK_NONE"},{"category":"HARM_CATEGORY_TOXICITY","threshold":"BLOCK_NONE"},{"category":"HARM_CATEGORY_VIOLENCE","threshold":"BLOCK_NONE"},{"category":"HARM_CATEGORY_SEXUAL","threshold":"BLOCK_NONE"},{"category":"HARM_CATEGORY_MEDICAL","threshold":"BLOCK_NONE"},{"category":"HARM_CATEGORY_DANGEROUS","threshold":"BLOCK_NONE"}],
         }
 
-        safety_settings = [
-        {
-            "category": "HARM_CATEGORY_HARASSMENT",
-            "threshold": "BLOCK_ONLY_HIGH"
-        },
-        {
-            "category": "HARM_CATEGORY_HATE_SPEECH",
-            "threshold": "BLOCK_ONLY_HIGH"
-        },
-        {
-            "category": "HARM_CATEGORY_SEXUALLY_EXPLICIT",
-            "threshold": "BLOCK_ONLY_HIGH"
-        },
-        {
-            "category": "HARM_CATEGORY_DANGEROUS_CONTENT",
-            "threshold": "BLOCK_ONLY_HIGH"
-        },
-        ]
+        prompt = f""" 
+        Rules:
+        If the input has non-inclusive language. Replace ONLY the non-inclusive word with inclusive words. 
+        Do not change words unless necessary.
+        You can keep the output the same if it is already inclusive. 
+        If blank input, blank output
 
+        Example Input 1: "Stewardess"
+        Example Output 1: "Flight Attendant"
 
-        model = genai.GenerativeModel(model_name="gemini-pro",
-                                    generation_config=generation_config,
-                                    safety_settings=safety_settings)
+        Example Input 2: "Blindly following"
+        Example Output 2: "Following aimlessly"
 
+        Example Input 3: "chairman"
+        Example Output 3: "chairperson"
 
-        prompt_parts = [
-        "If the input has non-inclusive language. Replace ONLY the non-inclusive word with inclusive words. If already inclusive dont change it.",
-        "input: Please call the chairman",
-        "output: Please call the chairperson",
-        "output 2: Gender",
-        "input: Is that the stewardess?",
-        "output: Is that the flight attendant?",
-        "output 2: Gender",
-        "input: Stop blindly following instructions",
-        "output: Stop aimlessly following instructions",
-        "output 2: Disability",
-        "input: The team needs a new secretary",
-        "output: The team needs a new administrative assistant",
-        "output 2: Gender",
-        "input: That's so lame",
-        "output: That's so unimpressive",
-        "output 2: Disability",
-        "input: She's such a tomboy",
-        "output: She has a sporty and adventurous style",
-        "output 2: Gender",
-        "input: The company needs more manpower",
-        "output: The company needs more workforce",
-        "output 2: Gender",
-        "input: He's a workaholic",
-        "output: He's very dedicated to his work",
-        "output 2: Disability",
-        "input: The old system is grandfathered in",
-        "output: The existing system is maintained",
-        "output 2: Age",
-        "input: Man up and face the challenge",
-        "output: Be resilient and face the challenge",
-        "output 2: Gender",
-        "input: That's retarded",
-        "output: That's not well thought out",
-        "output 2: Disability",
-        "input: Please call the chairperson",
-        "output: Please call the chairperson",
-        "output 2: None",
-        "input: Is that the flight attendant?",
-        "output: Is that the flight attendant?",
-        "output 2: None",
-        "input: Stop aimlessly following instructions",
-        "output: Stop aimlessly following instructions",
-        "output 2: None",
-        "input: ",
-        "output: ",
-        "output 2: None",
-        "input: "+ {inputt},
-        "output: ",
-        ]
+        Example Input 4: "Lame"
+        Example Output 4: "Unimpressive"
+
+        Example Input 5: "Tomboy"
+        Example Output 5: "Has a sporty and adventurous style"
+
+        Example Input 6: "Manpower"
+        Example Output 6: "Workforce"
+
+        Example Input 7: "Workaholic"
+        Example Output 7: "Very dedicated to his work"
+
+        Example Input 8: "Grandfathered in"
+        Example Output 8: "Existing system is maintained"
+
+        Example Input 9: "Man up and face the challenge"
+        Example Output 9: "Be resilient and face the challenge"
+
+        Example Input 10: "Retarded"
+        Example Output 10: "Not well thought out"
+
+        Example Input 11: "Please call the chairperson"
+        Example Output 11: "Please call the chairperson"
+
+        Example Input 12: "Is that the flight attendant?"
+        Example Output 12: "Is that the flight attendant?"
+
+        Example Input 13: "Stop aimlessly following instructions"
+        Example Output 13: "Stop aimlessly following instructions"
+
+        Example Input 14: ""
+        Example Output 14: ""
+
+        Example Input 5: ""
+        Example Output 5: ""
+        
+        Input is: {inputt}
+        Output is: 
+        """
      
-        response = model.generate_content(prompt_parts)
+        response = genai.generate_text(
+        **defaults,
+        prompt=prompt
 
+        )
         print("Result:" + response.result)
         return response.result
 
