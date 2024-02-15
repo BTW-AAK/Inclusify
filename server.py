@@ -7,16 +7,20 @@ app = Flask(__name__)
 @app.route('/')
 @app.route('/index')
 def index():
-    return render_template('index.html')
-@app.route('/weather')
+    return render_template('translate.html')
+@app.route('/translate')
 def get_weather():
     inputt = request.args.get('input')
-    output = translate_to_inclusive(inputt)
+    tone = request.args.get('tone')
+    output = translate_to_inclusive(inputt,tone)
     return render_template(
-        "weather.html",
+        "translated.html",
         inputt=inputt,
         title=output,
     )
+@app.route('/analytics')
+def analytics():
+    return render_template('analytics.html')
 
 if __name__ == "__main__" :
     # serve(app, host="0.0.0.0", port=8000)

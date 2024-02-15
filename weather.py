@@ -2,7 +2,7 @@ from dotenv import load_dotenv
 import google.generativeai as genai
 load_dotenv() 
 
-def translate_to_inclusive(inputt="Who is the chairman"):
+def translate_to_inclusive(inputt="Who is the chairman",tone="Neutral"):
         genai.configure(api_key="AIzaSyDHt49ArGg0gQZWevD3zNzOBQzKtcOTHmM")
         model = genai.GenerativeModel('gemini-pro')
 
@@ -23,6 +23,7 @@ def translate_to_inclusive(inputt="Who is the chairman"):
         2. Do not change words unless necessary.
         3. Keep the output the same if it is already inclusive.
         4. If the input is blank, provide blank output.
+        5. Tone should be {tone}
 
         Examples:
         1. "Stewardess" => "Flight Attendant"
@@ -33,7 +34,7 @@ def translate_to_inclusive(inputt="Who is the chairman"):
         6. "Man up and face the challenge" => "Be resilient and face the challenge"
         7. "Is that the flight attendant?" => "Is that the flight attendant?"
         8. "Stop aimlessly following instructions" => "Stop aimlessly following instructions"
-        9. "" => ""
+        9. "Don't cry like a girl" => "Express your emotions without conforming to gender stereotypes"
         10. "" => ""
         
         Input is: {inputt}
@@ -41,6 +42,8 @@ def translate_to_inclusive(inputt="Who is the chairman"):
         """
      
         response = model.generate_content(prompt)
-        print("Result:" + response.text)
+        print("Result: " + response.text)
+        print("__")
+        print("Tone: "+ tone)
         return response.text
 

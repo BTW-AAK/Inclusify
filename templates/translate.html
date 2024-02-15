@@ -26,20 +26,19 @@
 <body>
     <header>
         <div class="logo">
-            <img src="logo.png" alt="Inclusify Logo">
+            <img src="{{ url_for('static', filename='images/logo.svg') }}" class="image" id="logoImg"/>
         </div>
         <nav>
           <ul>
-              <li><a href="#translate">Translate</a></li>
-              <li><a href="#analytics">Analytics</a></li>
+              <li><a href="/">Translate</a></li>
+              <li><a href="/analytics">Analytics</a></li>
           </ul>
       </nav>
       
     </header>
     <main>
-        <form action="/weather">
+        <form action="/translate">
         <div class="dropdown">
-            <label for="tone">Choose a tone:</label>
             <select id="tone" name="tone">
                 <option value="Formal">Neutral</option>
                 <option value="Formal">Formal</option>
