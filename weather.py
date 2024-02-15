@@ -4,6 +4,7 @@ load_dotenv()
 
 def translate_to_inclusive(inputt="Who is the chairman"):
         genai.configure(api_key="AIzaSyDHt49ArGg0gQZWevD3zNzOBQzKtcOTHmM")
+        model = genai.GenerativeModel('gemini-pro')
 
         defaults = {
         'model': 'models/text-bison-001',
@@ -18,65 +19,28 @@ def translate_to_inclusive(inputt="Who is the chairman"):
 
         prompt = f""" 
         Rules:
-        If the input has non-inclusive language. Replace ONLY the non-inclusive word with inclusive words. 
-        Do not change words unless necessary.
-        You can keep the output the same if it is already inclusive. 
-        If blank input, blank output
+        1. Replace non-inclusive language with inclusive words.
+        2. Do not change words unless necessary.
+        3. Keep the output the same if it is already inclusive.
+        4. If the input is blank, provide blank output.
 
-        Example Input 1: "Stewardess"
-        Example Output 1: "Flight Attendant"
-
-        Example Input 2: "Blindly following"
-        Example Output 2: "Following aimlessly"
-
-        Example Input 3: "chairman"
-        Example Output 3: "chairperson"
-
-        Example Input 4: "Lame"
-        Example Output 4: "Unimpressive"
-
-        Example Input 5: "Tomboy"
-        Example Output 5: "Has a sporty and adventurous style"
-
-        Example Input 6: "Manpower"
-        Example Output 6: "Workforce"
-
-        Example Input 7: "Workaholic"
-        Example Output 7: "Very dedicated to his work"
-
-        Example Input 8: "Grandfathered in"
-        Example Output 8: "Existing system is maintained"
-
-        Example Input 9: "Man up and face the challenge"
-        Example Output 9: "Be resilient and face the challenge"
-
-        Example Input 10: "Retarded"
-        Example Output 10: "Not well thought out"
-
-        Example Input 11: "Please call the chairperson"
-        Example Output 11: "Please call the chairperson"
-
-        Example Input 12: "Is that the flight attendant?"
-        Example Output 12: "Is that the flight attendant?"
-
-        Example Input 13: "Stop aimlessly following instructions"
-        Example Output 13: "Stop aimlessly following instructions"
-
-        Example Input 14: ""
-        Example Output 14: ""
-
-        Example Input 5: ""
-        Example Output 5: ""
+        Examples:
+        1. "Stewardess" => "Flight Attendant"
+        2. "Blindly following" => "Following aimlessly"
+        3. "Chairman" => "Chairperson"
+        4. "Lame" => "Unimpressive"
+        5. "Manpower" => "Workforce"
+        6. "Man up and face the challenge" => "Be resilient and face the challenge"
+        7. "Is that the flight attendant?" => "Is that the flight attendant?"
+        8. "Stop aimlessly following instructions" => "Stop aimlessly following instructions"
+        9. "" => ""
+        10. "" => ""
         
         Input is: {inputt}
         Output is: 
         """
      
-        response = genai.generate_text(
-        **defaults,
-        prompt=prompt
-
-        )
-        print("Result:" + response.result)
-        return response.result
+        response = model.generate_content(prompt)
+        print("Result:" + response.text)
+        return response.text
 
