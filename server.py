@@ -12,7 +12,7 @@ def startLogin():
 def startSignup():
     return render_template('signup.html')
 
-@app.route('/translate')
+@app.route('/translate-home')
 def index():
     return render_template('translate.html')
 
