@@ -1,0 +1,18 @@
+body {
+    margin: 0;
+    font-family: 'Arial', sans-serif;
+    background-color: #f4f4f9; /* Background color of the entire page */
+}
+
+header {
+    position: relative;
+    display: flex;
+    justify-content: center; 
+    align-items: center;
+    height: 60px; 
+    background-color: #6c63ff; /* Header Color */
+}
+
+#backgroundabstract{
+    
+}

@@ -1,0 +1,78 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Inclusify App</title>
+    <link rel="stylesheet" href="{{ url_for('static', filename='css/style.css') }}">
+    <link rel="stylesheet" href="{{ url_for('static', filename='css/login.css') }}">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css">
+    <script src="https://www.gstatic.com/firebasejs/8.4.3/firebase-app.js"></script>
+    <script src="https://www.gstatic.com/firebasejs/8.4.3/firebase-auth.js"></script>
+    <script src="https://www.gstatic.com/firebasejs/8.4.3/firebase-firestore.js"></script>
+    <script src="https://www.gstatic.com/firebasejs/8.4.3/firebase-database.js"></script>
+    <script>
+        // See: https://firebase.google.com/docs/web/learn-more#config-object
+        const firebaseConfig = {
+            apiKey: "AIzaSyAxi-0941fjXf4uHDYi--tDRWfo44t19yU",
+            authDomain: "car-race-411f3.firebaseapp.com",
+            databaseURL: "https://car-race-411f3-default-rtdb.asia-southeast1.firebasedatabase.app",
+            projectId: "car-race-411f3",
+            storageBucket: "car-race-411f3.appspot.com",
+            messagingSenderId: "545753548764",
+            appId: "1:545753548764:web:edd36a0607d9dff8a17119"
+        };
+        // Initialize Firebase
+        firebase.initializeApp(firebaseConfig);
+        const auth = firebase.auth();
+        </script>
+        
+</head>
+<body>
+    
+    <div class="email-L" id="emailing-div">
+        <input type="email" name="email" id="emailL" placeholder="Email">
+    </div>
+    <div class="password-L">
+        <input type="password" name="password" id="passwordL"placeholder="Password">
+    </div>
+    <div class="swap-login-signup">
+        <a href="signup.html" id="login-signup-swap">
+            No account yet? Register Here</a>
+        </div>
+    <button id="button-login">Log In</button>
+</body>
+
+
+<script>
+    var loginButton = document.querySelector('#button-login')
+    console.log(loginButton)
+    loginButton.addEventListener('click', function(event) {
+    event.preventDefault(); 
+    console.log("button was clicked")
+    var emailL = document.querySelector("#emailL").value;
+    var passwordL = document.querySelector("#passwordL").value;
+    console.log(document.querySelector("#emailL").value)
+
+    firebase.auth().signInWithEmailAndPassword(emailL, passwordL)
+
+    .then(function(userCredential) {
+    // User is signed in
+    var user = userCredential.user;
+    console.log("User is signed in");
+    alert("signed in sucessfully!")
+
+    // Redirect the user to the homepage
+    window.location.href = "translate";
+    })
+    .catch(function(error) {
+    // Handle errors
+    console.error(error);
+    alert(error)
+    });
+    }
+    )
+    
+</script>
+
+</html>

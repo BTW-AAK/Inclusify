@@ -3,11 +3,15 @@ from weather import translate_to_inclusive
 from waitress import serve
 
 app = Flask(__name__)
-
 @app.route('/')
-@app.route('/index')
+@app.route('/login')
+def startLogin():
+    return render_template('login.html')
+
+@app.route('/translate')
 def index():
     return render_template('translate.html')
+
 @app.route('/translate')
 def get_weather():
     inputt = request.args.get('input')
@@ -18,6 +22,7 @@ def get_weather():
         inputt=inputt,
         title=output,
     )
+
 @app.route('/analytics')
 def analytics():
     return render_template('analytics.html')
