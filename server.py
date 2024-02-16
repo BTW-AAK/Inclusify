@@ -8,6 +8,10 @@ app = Flask(__name__)
 def startLogin():
     return render_template('login.html')
 
+@app.route('/signup')
+def startSignup():
+    return render_template('signup.html')
+
 @app.route('/translate')
 def index():
     return render_template('translate.html')

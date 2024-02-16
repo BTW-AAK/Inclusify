@@ -27,20 +27,41 @@
         const auth = firebase.auth();
         </script>
         
+        
+        <!-- <img src="{{ url_for('static', filename='images/Background.svg' ) }}" class="image" id="backgroundImg"/> -->
+
 </head>
 <body>
-    
-    <div class="email-L" id="emailing-div">
-        <input type="email" name="email" id="emailL" placeholder="Email">
-    </div>
-    <div class="password-L">
-        <input type="password" name="password" id="passwordL"placeholder="Password">
-    </div>
-    <div class="swap-login-signup">
-        <a href="signup.html" id="login-signup-swap">
-            No account yet? Register Here</a>
+        <div class="row">
+            <div id="left_column" class="column">
+                <div id="logoCont">
+                    <img src="{{ url_for('static', filename='images/logo.svg' ) }}" class="image" id="logoImg"/>
+                </div>
+                <div #centered-left-col>                
+                    <div id="LoginTitle">Login</div>
+
+                
+                <div class="L-inputCont" id="emailing-div">
+                    <input class="L-input"  name="email" id="emailL" placeholder="Email">
+                </div>
+                <div class="error" hidden id="emailError">Sorry, we could not find an account with that email</div>
+                <div class="L-inputCont">
+                    <input class="L-input"  type="password" name="password" id="passwordL"placeholder="Password">
+                </div>
+                <div class="error" hidden id="passwordError">Sorry, the password is incorrect</div>
+            
+                <div id="switcher" > <a href="/signup">Don't have an account? Sign Up Here</a> </div>
+                
+                <div id="button-Container">
+                    <button id="button-login">Log In</button>
+                </div>
+                
+
+                </div>
+            </div>
+            <div id="right_column"class="column"></div>
         </div>
-    <button id="button-login">Log In</button>
+      
 </body>
 
 
@@ -48,6 +69,9 @@
     var loginButton = document.querySelector('#button-login')
     console.log(loginButton)
     loginButton.addEventListener('click', function(event) {
+        document.getElementById('passwordError').hidden = true; 
+        document.getElementById('emailError').hidden = true; 
+
     event.preventDefault(); 
     console.log("button was clicked")
     var emailL = document.querySelector("#emailL").value;
@@ -67,8 +91,19 @@
     })
     .catch(function(error) {
     // Handle errors
-    console.error(error);
-    alert(error)
+    console.log(error.code);
+    if(error.code=="auth/user-not-found"){
+        document.getElementById('emailError').hidden = false; 
+        console.log("ERROR WAS IN EMAIL")
+    }
+    if(error.code=="auth/wrong-password"){
+        document.getElementById('passwordError').hidden = false; 
+        console.log("ERROR WAS IN PASSWORD")
+
+    }
+    if(error.code != "auth/wrong-password" && error.code!="auth/user-not-found") {
+        alert(error)
+    }
     });
     }
     )

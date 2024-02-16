@@ -1,8 +1,18 @@
+@import url('https://fonts.googleapis.com/css2?family=Readex+Pro:wght@160..700&display=swap');
+
+@import url('https://fonts.googleapis.com/css2?family=Roboto+Mono&display=swap');
+
+
+
 body {
     margin: 0;
     font-family: 'Arial', sans-serif;
-    background-color: #f4f4f9; /* Background color of the entire page */
+    background-image: url("/static/images/Background.png");
+    background-repeat: no-repeat;
+    background-size: 100% 100%;
 }
+
+
 
 header {
     position: relative;
@@ -13,6 +23,108 @@ header {
     background-color: #6c63ff; /* Header Color */
 }
 
-#backgroundabstract{
-    
+
+.row {
+    display: flex;
+    margin: 15%;
+    margin-top: 9%;
+
+  }
+  
+  /* Create two equal columns that sits next to each other */
+  .column {
+    flex: 50%;
+    padding: 10px;
+    height: 600px; 
+    border: 5px;
+  }
+
+  #left_column{
+    background-color: #fff;
+  }
+
+  #right_column{
+    background-image: url("/static/images/Pink-purple-gradient.png");
+    background-repeat: no-repeat;
+    background-size: 100%;
+  }
+
+  #logoImg{
+    height: 60px;
+    margin-left: -60px;
+  }
+
+  #centered-left-col{
+    text-align: center;
+  }
+
+  #LoginTitle{
+    padding-top: 55px;
+    padding-bottom: 20px;
+
+    font-family: 'Readex Pro', sans-serif; 
+    font-size: 46px;
+    text-align: center;
+    font-weight: medium;
+  }
+
+  .L-inputCont{
+    text-align: center;
+}
+
+.L-input{
+    height: 30px;
+    width: 380px;
+    text-align: center;
+    padding: 10px;
+    margin: 10px;
+    border-radius: 10px;
+    border: 1px solid #aaa;
+    background-color: #F5F5F5;
+    font-size: 16px;
+    color: #292929;
+    font-family: 'Roboto Mono', sans-serif; 
+
+
+}
+::placeholder{
+    font-size: 16px;
+    color: #3f3f3f;
+    font-family: 'Roboto Mono', sans-serif; 
+
+
+}
+.error{
+    margin-left: 95px;
+    font-family: 'Readex Pro', sans-serif; 
+    font-size: 12px;
+    margin-top: -10px;
+    color: #3f3f3f;
+}
+
+#switcher{
+    color: #3f3f3f;
+    font-family: 'Readex Pro', sans-serif; 
+    font-size: 12px;
+    text-align: center;
+    margin-top: 5px;
+}
+
+#button-Container{
+    text-align: center;
+    padding-top: 20px;
+}
+#button-login{
+    width: 250px;
+    height: 40px;
+    font-size: 20px;
+    font-family: 'Readex Pro', sans-serif; 
+    border-radius: 5px;
+    border: 1px;
+    background-color: #73C1C6;
+}
+
+#button-login:hover{
+    transition: color 0.4s ease;
+    background-color: #7fc9ce;
 }
