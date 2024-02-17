@@ -1,0 +1,30 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Inclusify App</title>
+    <link rel="stylesheet" href="{{ url_for('static', filename='css/onboarding.css') }}">
+</head>
+<body>
+    <div id="back-background">
+        
+    <img src="{{ url_for('static', filename='images/Onboarding-content.png' ) }}" class="image" id="Container"/>
+    
+
+    <div class="OnboardingButtonCont" id="signupButtonCont">    
+        <button onclick="window.location.href='/signup'" class="OnboardingButton">Sign Up</button>
+    </div>
+
+
+    <div class="OnboardingButtonCont" id="loginButtonCont">    
+        <button onclick="window.location.href='/login'" class="OnboardingButton">Login</button>
+
+    </div>
+
+
+</div>
+
+
+</body>
+</html>
