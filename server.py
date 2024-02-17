@@ -1,9 +1,25 @@
 from flask import Flask, render_template, request
 from weather import translate_to_inclusive
-from waitress import serve
+from flask_sqlalchemy import SQLAlchemy
+from datetime import datetime
 
 app = Flask(__name__)
+app.config['SQLALCHEMY_DATABASE_URI'] = 'sqlite:///analysis.db'
+
+db = SQLAlchemy(app)
+
+#createmodel
+class Users(db.Model):
+    id = db.Column(db.Integer, primary_key=True)
+    typeofnonI = db.Column(db.String(200), nullable=True)
+    mostUsedN = db.Column(db.String(200), nullable=True)
+    mostUsedI = db.Column(db.String(200), nullable=True)
+
 @app.route('/')
+@app.route('/onboarding')
+def onboarding():
+    return render_template('onboarding.html')
+
 @app.route('/login')
 def startLogin():
     return render_template('login.html')
