@@ -1,5 +1,5 @@
 from flask import Flask, render_template, request
-from weather import translate_to_inclusive
+from weather import translate_to_inclusive, analysis
 from flask_sqlalchemy import SQLAlchemy
 from datetime import datetime
 
@@ -37,11 +37,20 @@ def get_weather():
     inputt = request.args.get('input')
     tone = request.args.get('tone')
     output = translate_to_inclusive(inputt,tone)
+
+
+    json_analysis = analysis(inputt)
+    user = Users(typeofnonI=json_analysis['TypeNL'], mostUsedN=json_analysis['UsedN'], mostUsedI=json_analysis['UsedI'])
+    db.session.add(user)
+    db.session.commit()
+
+
     return render_template(
         "translated.html",
         inputt=inputt,
         title=output,
     )
+
 
 @app.route('/analytics')
 def analytics():
