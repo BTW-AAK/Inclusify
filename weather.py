@@ -43,7 +43,6 @@ def translate_to_inclusive(inputt="Who is the chairman",tone="Neutral"):
         """
      
         response = model.generate_content(prompt)
-        print("Result: " + response.text)
         print("__")
         print("Tone: "+ tone)
         return response.text
@@ -72,7 +71,7 @@ def analysis(inputt="Who is the chairman"):
 		2. There are 3 parameters 
 		TypeNL = type of noninclusive language (Gendered, Disability, Age, None)
 		UsedN = the noninclusive language word used  
-		UsedI = Any inclusive language  
+		UsedI = Any inclusive language that can be used.
 		Note: If the following are not found replace with "None"
 		
 
@@ -80,12 +79,12 @@ def analysis(inputt="Who is the chairman"):
         1. "Please call the chairman" => 
 		"TypeNL": "Gendered",
   		"UsedN": "chairman",
-  		"UsedI": "None"
+  		"UsedI": "Chairperson"
 
 		2. "Man up and face the challenge" =>
 		"TypeNL": "Gendered",
 		"UsedN": "Man up",
-		"UsedI": "Courageously"
+		"UsedI": "Courageous"
 
 		3. "Please call the chairperson" =>
 
@@ -96,13 +95,12 @@ def analysis(inputt="Who is the chairman"):
 		4. "Stop blindly following instructions"
 		"TypeNL": "Disability",
 		"UsedN": "blindly",
-		"UsedI": "None"
+		"UsedI": "Aimlessly"
 
         Input is: {inputt}
         """
      
         response = model.generate_content(prompt)
-        print("Result: " + response.text)
         json_analysis = json.loads(response.text)
         print(json_analysis)
         
