@@ -1,7 +1,10 @@
 from flask import Flask, render_template, request
 from weather import translate_to_inclusive, analysis
 from flask_sqlalchemy import SQLAlchemy
-from datetime import datetime
+import plotly
+import plotly.express as px
+import json
+
 
 app = Flask(__name__)
 app.config['SQLALCHEMY_DATABASE_URI'] = 'sqlite:///analysis.db'
@@ -54,7 +57,19 @@ def get_weather():
 
 @app.route('/analytics')
 def analytics():
-    return render_template('analytics.html')
+    data = db.session.query(Users.typeofnonI, db.func.count().label('count')).group_by(Users.typeofnonI).all()
+
+    # Unpack the data for plotting
+    types, counts = zip(*data)
+
+    # Create a pie chart using Plotly
+    fig = px.pie(labels=types, values=counts, title='Distribution of TypeNL in Analysis Database')
+
+    # Convert the plot to JSON
+    plot_json = json.dumps(fig, cls=plotly.utils.PlotlyJSONEncoder)
+
+    # Render the HTML template with the Plotly JSON
+    return render_template('analytics.html', plot_json=plot_json)
 
 if __name__ == "__main__" :
     # serve(app, host="0.0.0.0", port=8000)
