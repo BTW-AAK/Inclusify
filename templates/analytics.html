@@ -22,44 +22,60 @@
       
     </header>
 
-    <h1>Distribution of TypeNL in Analysis Database</h1>
-    <div id="plotly-chart"></div>
 
-    <script>
-        // Parse the Plotly JSON and render the chart
-        var plotJson = {{ plot_json | tojson | safe }};
-        Plotly.newPlot('plotly-chart', JSON.parse(plotJson.replace(/&quot;/g, '"')));
-    </script>
-    
+    <div class="analytic-containers">
+        <div class="left-analytics">
+            <div class="actual-analytic-cont" id="left-actual-analytic-cont">
 
-    <h2>Top 5 Most Used Words</h2>
-    <ul>
-        {% for word, count in most_common_words %}
-            <li>{{ word }} - {{ count }} times</li>
-        {% endfor %}
-    </ul>
+            <!--* Most used word  -->
+            <div class="most-used-word-row">
+                <div class="most-used-word-left">
+                    <div id="pie-chart"></div>
+                    
+                    <script>
+                        // Parse the Plotly JSON and render the pie chart
+                        var pieChartJson = {{ pie_chart_json | safe }};
+                        pieChartJson.data[0].hoverinfo = 'label+value';
+                        pieChartJson.data[0].textinfo = 'label';
+                        Plotly.newPlot('pie-chart', pieChartJson);
+                    </script>
+                </div>
+                <div class="most-used-word-right">
+                    <h2>Top 10 Most Used Words</h2>
+                    <ul>
+                        {% for word, count in most_common_words %}
+                            <li id="most_common_words_div">{{ word }} - {{ count }} times</li>
+                        {% endfor %}
+                    </ul>
+                </div>
+            </div>
+            <div id="bar-chart"></div>
 
-    <h2>Pie Chart</h2>
-    <div id="pie-chart"></div>
-    
-    <script>
-        // Parse the Plotly JSON and render the pie chart
-        var pieChartJson = {{ pie_chart_json | safe }};
-        pieChartJson.data[0].hoverinfo = 'label+value';
-        pieChartJson.data[0].textinfo = 'label';
-        Plotly.newPlot('pie-chart', pieChartJson);
-    </script>
-    
-    <h2>Usage History</h2>
-    <p>Number of uses: {{ max_id }}</p>
-    
-    <h2>Change in Frequency Over Time</h2>
-    <div id="bar-chart"></div>
+            <script>
+                // Parse the Plotly JSON and render the bar chart
+                var barChartJson = {{ bar_chart_json | safe }};
+                Plotly.newPlot('bar-chart', barChartJson.data, barChartJson.layout);
+            </script>
 
-    <script>
-        // Parse the Plotly JSON and render the bar chart
-        var barChartJson = {{ bar_chart_json | safe }};
-        Plotly.newPlot('bar-chart', barChartJson.data, barChartJson.layout);
-    </script>
+            </div>
+        </div>
+        <div class="right-analytics">
+            <div class="actual-analytic-cont" id="right-actual-analytic-cont">
+
+                <h2 id="UseCounter">Number of uses: {{ max_id }}</h2>
+                <div id="plotly-chart"></div>
+    
+                <script>
+                    // Parse the Plotly JSON and render the chart
+                    var plotJson = {{ plot_json | tojson | safe }};
+                    Plotly.newPlot('plotly-chart', JSON.parse(plotJson.replace(/&quot;/g, '"')));
+                </script>
+
+            </div>
+
+        
+        </div>
+    </div>
+
 </body>
 </html>
