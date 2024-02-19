@@ -59,16 +59,13 @@ def get_weather():
 def analytics():
     data = db.session.query(Users.typeofnonI, db.func.count().label('count')).group_by(Users.typeofnonI).all()
 
-    # Unpack the data for plotting
     types, counts = zip(*data)
 
-    # Create a pie chart using Plotly
-    fig = px.pie(labels=types, values=counts, title='Distribution of TypeNL in Analysis Database')
+    fig = px.pie(names=types, values=counts, title='Distribution of TypeNL in Analysis Database',
+                 custom_data=[types, counts], labels={'names': 'Type'})
 
-    # Convert the plot to JSON
     plot_json = json.dumps(fig, cls=plotly.utils.PlotlyJSONEncoder)
 
-    # Render the HTML template with the Plotly JSON
     return render_template('analytics.html', plot_json=plot_json)
 
 if __name__ == "__main__" :
