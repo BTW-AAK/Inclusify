@@ -71,8 +71,12 @@ def analytics():
 
     types, counts = zip(*data)
 
-    fig = px.pie(names=types, values=counts, title='Distribution of TypeNL in Analysis Database',
-                 custom_data=[types, counts], labels={'names': 'Type'})
+    fig = px.pie(names=types, values=counts, title='Distribution of Type of Non Inclusive Language Used',
+                 custom_data=[types, counts], labels={'names': 'Type'}, )
+    fig.update_layout({
+        'plot_bgcolor': 'rgba(0,0,0,0)',
+        'paper_bgcolor': 'rgba(0,0,0,0)'
+    })
 
     plot_json = json.dumps(fig, cls=plotly.utils.PlotlyJSONEncoder)
 
@@ -87,16 +91,19 @@ def analytics():
     word_counts = Counter(words)
 
     # Get the 5 most common words
-    most_common_words = word_counts.most_common(5)
+    most_common_words = word_counts.most_common(10)
+    most5_common_words = word_counts.most_common(5)
 
     pie_chart = {
         "data": [{
-            "labels": [word for word, _ in most_common_words],
-            "values": [count for _, count in most_common_words],
+            "labels": [word for word, _ in most5_common_words],
+            "values": [count for _, count in most5_common_words],
             "type": "pie"
         }],
         "layout": {
-            "title": "Top 5 Most Used Non Inclusive Words"
+            "title": "Top 5 Most Used Non Inclusive Words",
+            "paper_bgcolor": "rgba(0, 0, 0, 0)",
+            "plot_bgcolor": "rgba(0, 0, 0, 0)",
         }
     }
 
@@ -117,12 +124,16 @@ def analytics():
             "x": timestamps,
             "y": counts,
             "type": "bar",
-            "name": "Frequency Over Time"
+            "name": "Frequency Over Time",
+            "marker": {"color": "#9A52B8"}
         }],
         "layout": {
             "title": "Use of Non-Inclusive Language Over Time",
             "xaxis": {"title": "Date", "tickformat": "%d-%m-%Y"},
-            "yaxis": {"title": "Frequency"}
+            "yaxis": {"title": "Frequency"},
+            "paper_bgcolor": "rgba(0, 0, 0, 0)",
+            "plot_bgcolor": "rgba(0, 0, 0, 0)",
+
         }
     }
 
