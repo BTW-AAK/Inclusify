@@ -188,3 +188,17 @@ textarea {
     border-color: #a8a8a8; /* Adjust the color to match the focus color in the image */
 }
 
+#plotly-chart{
+    width: 500px;
+    height: 500px;
+}
+
+#pie-chart{
+    width: 500px;
+    height: 500px;
+}
+
+#bar-chart{
+    width: 800px;
+    height: 300px;
+}

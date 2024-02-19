@@ -67,7 +67,7 @@ def analysis(inputt="Who is the chairman"):
         Rules:
        Rules:
         1. Analyze the non-inclusive language input in JSON format as seen in example.
-		3. Output in 
+		3. Must be only 1 Word.
 		2. There are 3 parameters 
 		TypeNL = type of noninclusive language (Gendered, Disability, Age, None)
 		UsedN = the noninclusive language word used  

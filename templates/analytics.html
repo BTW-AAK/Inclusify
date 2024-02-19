@@ -30,7 +30,36 @@
         var plotJson = {{ plot_json | tojson | safe }};
         Plotly.newPlot('plotly-chart', JSON.parse(plotJson.replace(/&quot;/g, '"')));
     </script>
+    
 
+    <h2>Top 5 Most Used Words</h2>
+    <ul>
+        {% for word, count in most_common_words %}
+            <li>{{ word }} - {{ count }} times</li>
+        {% endfor %}
+    </ul>
 
+    <h2>Pie Chart</h2>
+    <div id="pie-chart"></div>
+    
+    <script>
+        // Parse the Plotly JSON and render the pie chart
+        var pieChartJson = {{ pie_chart_json | safe }};
+        pieChartJson.data[0].hoverinfo = 'label+value';
+        pieChartJson.data[0].textinfo = 'label';
+        Plotly.newPlot('pie-chart', pieChartJson);
+    </script>
+    
+    <h2>Usage History</h2>
+    <p>Number of uses: {{ max_id }}</p>
+    
+    <h2>Change in Frequency Over Time</h2>
+    <div id="bar-chart"></div>
+
+    <script>
+        // Parse the Plotly JSON and render the bar chart
+        var barChartJson = {{ bar_chart_json | safe }};
+        Plotly.newPlot('bar-chart', barChartJson.data, barChartJson.layout);
+    </script>
 </body>
 </html>
