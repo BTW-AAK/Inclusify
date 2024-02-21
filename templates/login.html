@@ -1,113 +1,137 @@
 <!DOCTYPE html>
 <html lang="en">
-<head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
     <title>Inclusify App</title>
-    <link rel="stylesheet" href="{{ url_for('static', filename='css/style.css') }}">
-    <link rel="stylesheet" href="{{ url_for('static', filename='css/login.css') }}">
-    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css">
+    <link
+      rel="stylesheet"
+      href="{{ url_for('static', filename='css/style.css') }}"
+    />
+    <link
+      rel="stylesheet"
+      href="{{ url_for('static', filename='css/login.css') }}"
+    />
+    <link
+      rel="stylesheet"
+      href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css"
+    />
     <script src="https://www.gstatic.com/firebasejs/8.4.3/firebase-app.js"></script>
     <script src="https://www.gstatic.com/firebasejs/8.4.3/firebase-auth.js"></script>
     <script src="https://www.gstatic.com/firebasejs/8.4.3/firebase-firestore.js"></script>
     <script src="https://www.gstatic.com/firebasejs/8.4.3/firebase-database.js"></script>
     <script>
-        // See: https://firebase.google.com/docs/web/learn-more#config-object
-        const firebaseConfig = {
-            apiKey: "AIzaSyAxi-0941fjXf4uHDYi--tDRWfo44t19yU",
-            authDomain: "car-race-411f3.firebaseapp.com",
-            databaseURL: "https://car-race-411f3-default-rtdb.asia-southeast1.firebasedatabase.app",
-            projectId: "car-race-411f3",
-            storageBucket: "car-race-411f3.appspot.com",
-            messagingSenderId: "545753548764",
-            appId: "1:545753548764:web:edd36a0607d9dff8a17119"
-        };
-        // Initialize Firebase
-        firebase.initializeApp(firebaseConfig);
-        const auth = firebase.auth();
-        </script>
-        
-        
-        <!-- <img src="{{ url_for('static', filename='images/Background.svg' ) }}" class="image" id="backgroundImg"/> -->
+      // See: https://firebase.google.com/docs/web/learn-more#config-object
+      const firebaseConfig = {
+        apiKey: "AIzaSyAxi-0941fjXf4uHDYi--tDRWfo44t19yU",
+        authDomain: "car-race-411f3.firebaseapp.com",
+        databaseURL:
+          "https://car-race-411f3-default-rtdb.asia-southeast1.firebasedatabase.app",
+        projectId: "car-race-411f3",
+        storageBucket: "car-race-411f3.appspot.com",
+        messagingSenderId: "545753548764",
+        appId: "1:545753548764:web:edd36a0607d9dff8a17119",
+      };
+      // Initialize Firebase
+      firebase.initializeApp(firebaseConfig);
+      const auth = firebase.auth();
+    </script>
+  </head>
 
-</head>
-<body>
-        <div class="row">
-            <div id="left_column" class="column">
-                <div id="logoCont">
-                    <img src="{{ url_for('static', filename='images/logo.svg' ) }}" class="image" id="logoImg"/>
-                </div>
-                <div #centered-left-col>                
-                    <div id="LoginTitle">Login</div>
-
-                
-                <div class="L-inputCont" id="emailing-div">
-                    <input class="L-input"  name="email" id="emailL" placeholder="Email">
-                </div>
-                <div class="error" hidden id="emailError">Sorry, we could not find an account with that email</div>
-                <div class="L-inputCont">
-                    <input class="L-input"  type="password" name="password" id="passwordL"placeholder="Password">
-                </div>
-                <div class="error" hidden id="passwordError">Sorry, the password is incorrect</div>
-            
-                <div id="switcher" > <a href="/signup">Don't have an account? Sign Up Here</a> </div>
-                
-                <div id="button-Container">
-                    <button id="button-login">Log In</button>
-                </div>
-                
-
-                </div>
-            </div>
-            <div id="right_column"class="column"></div>
+  <body>
+    <div class="row">
+      <div id="left_column" class="column">
+        <div id="logoCont">
+          <img
+            src="{{ url_for('static', filename='images/logo.svg' ) }}"
+            class="image"
+            id="logoImg"
+          />
         </div>
-      
-</body>
+        <div #centered-left-col>
+          <div id="LoginTitle">Login</div>
 
+          <div class="L-inputCont" id="emailing-div">
+            <input
+              class="L-input"
+              name="email"
+              id="emailL"
+              placeholder="Email"
+            />
+          </div>
+          <div class="error" hidden id="emailError">
+            Sorry, we could not find an account with that email
+          </div>
+          <div class="L-inputCont">
+            <input
+              class="L-input"
+              type="password"
+              name="password"
+              id="passwordL"
+              placeholder="Password"
+            />
+          </div>
+          <div class="error" hidden id="passwordError">
+            Sorry, the password is incorrect
+          </div>
 
-<script>
-    var loginButton = document.querySelector('#button-login')
-    console.log(loginButton)
-    loginButton.addEventListener('click', function(event) {
-        document.getElementById('passwordError').hidden = true; 
-        document.getElementById('emailError').hidden = true; 
+          <div id="switcher">
+            <a href="/signup">Don't have an account? Sign Up Here</a>
+          </div>
 
-    event.preventDefault(); 
-    console.log("button was clicked")
-    var emailL = document.querySelector("#emailL").value;
-    var passwordL = document.querySelector("#passwordL").value;
-    console.log(document.querySelector("#emailL").value)
+          <div id="button-Container">
+            <button id="button-login">Log In</button>
+          </div>
+        </div>
+      </div>
+      <div id="right_column" class="column"></div>
+    </div>
+  </body>
 
-    firebase.auth().signInWithEmailAndPassword(emailL, passwordL)
+  <script>
+    var loginButton = document.querySelector("#button-login");
+    console.log(loginButton);
+    loginButton.addEventListener("click", function (event) {
+      document.getElementById("passwordError").hidden = true;
+      document.getElementById("emailError").hidden = true;
 
-    .then(function(userCredential) {
-    // User is signed in
-    var user = userCredential.user;
-    console.log("User is signed in");
-    alert("signed in sucessfully!")
+      event.preventDefault();
+      console.log("button was clicked");
+      var emailL = document.querySelector("#emailL").value;
+      var passwordL = document.querySelector("#passwordL").value;
+      console.log(document.querySelector("#emailL").value);
 
-    // Redirect the user to the homepage
-    window.location.href = "translate-home";
-    })
-    .catch(function(error) {
-    // Handle errors
-    console.log(error.code);
-    if(error.code=="auth/user-not-found"){
-        document.getElementById('emailError').hidden = false; 
-        console.log("ERROR WAS IN EMAIL")
-    }
-    if(error.code=="auth/wrong-password"){
-        document.getElementById('passwordError').hidden = false; 
-        console.log("ERROR WAS IN PASSWORD")
+      firebase
+        .auth()
+        .signInWithEmailAndPassword(emailL, passwordL)
 
-    }
-    if(error.code != "auth/wrong-password" && error.code!="auth/user-not-found") {
-        alert(error)
-    }
+        .then(function (userCredential) {
+          // User is signed in
+          var user = userCredential.user;
+          console.log("User is signed in");
+          alert("signed in sucessfully!");
+
+          // Redirect the user to the homepage
+          window.location.href = "translate-home";
+        })
+        .catch(function (error) {
+          // Handle errors
+          console.log(error.code);
+          if (error.code == "auth/user-not-found") {
+            document.getElementById("emailError").hidden = false;
+            console.log("ERROR WAS IN EMAIL");
+          }
+          if (error.code == "auth/wrong-password") {
+            document.getElementById("passwordError").hidden = false;
+            console.log("ERROR WAS IN PASSWORD");
+          }
+          if (
+            error.code != "auth/wrong-password" &&
+            error.code != "auth/user-not-found"
+          ) {
+            alert(error);
+          }
+        });
     });
-    }
-    )
-    
-</script>
-
+  </script>
 </html>

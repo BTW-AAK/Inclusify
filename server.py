@@ -140,4 +140,4 @@ def analytics():
     return render_template('analytics.html', plot_json=plot_json, most_common_words=most_common_words, pie_chart_json=pie_chart_json, max_id=max_id, bar_chart_json=bar_chart_json, timestamps=timestamps)
 
 if __name__ == "__main__" :
-    app.run()
+    app.run(debug=True)
