@@ -28,38 +28,24 @@
         <div class="logo">
             <img src="{{ url_for('static', filename='images/logo.svg') }}" class="image" id="logoImg"/>
         </div>
-        <nav>
-          <ul>
-              <li><a href="/">Translate</a></li>
-              <li><a href="/analytics">Analytics</a></li>
-          </ul>
-      </nav>
       
     </header>
     <main>
         <form action="/translate">
-        <div class="dropdown">
-            <select id="tone" name="tone">
-                <option value="Formal">Neutral</option>
-                <option value="Formal">Formal</option>
-                <option value="Encouraging">Encouraging</option>
-                <option value="Friendly">Friendly</option>
-                <option value="Direct">Authoritative</option>
-                <option value="Sympathetic">Sympathetic</option>
-                <option value="Reflective">Reflective</option>
-                <option value="Optimistic">Optimistic</option>
-                <option value="Grateful">Grateful</option>
-            </select>
-        </div>
         <div class="text-areas">
             <div class="input-text">
                 <label for="inputText">Input Text</label>
-                <textarea name="input" id="input" placeholder="Write here..."></textarea>
+                <input name="input" id="input" placeholder="event description"></input>
             </div>
-            <div class="output-text">
-                <label for="outputText">Output Text</label>
-                <textarea id="outputText" placeholder="Results show here..." readonly></textarea>
-            </div>
+    <input type="text" id="name" name="name" placeholder="Your Name" required><br><br>
+    <input type="text" id="email" name="email" placeholder="date" required><br><br>
+    <input type="text" id="tips" name="tips" placeholder="Event Name" required><br><br>
+    <input id="Qualifications" name="Qualifications" placeholder="Your Qualifications" required></input><br><br>
+    <input type="text" id="title" name="title" placeholder="Category" required><br><br>
+        <!-- <div class="output-text"> -->
+                <!-- <label for="outputText">Output Text</label> -->
+                <!-- <textarea id="outputText" placeholder="Results show here..." readonly></textarea> -->
+            <!-- </div> -->
         </div>
         <div class="generate-button">
             <button type="submit">Generate</button>
