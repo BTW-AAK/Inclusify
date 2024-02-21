@@ -11,17 +11,17 @@ def index():
 @app.route('/translate')
 def get_weather():
     inputt = request.args.get('input')
-    tone = request.args.get('tone')
-    output = translate_to_inclusive(inputt,tone)
+    output = translate_to_inclusive(inputt)
+    Qualification = request.args.get('Qualifications')
+
     return render_template(
         "translated.html",
         inputt=inputt,
         title=output,
+        Qualification = Qualification,
+
     )
-@app.route('/analytics')
-def analytics():
-    return render_template('analytics.html')
 
 if __name__ == "__main__" :
     # serve(app, host="0.0.0.0", port=8000)
-    app.run()
+    app.run(debug=True, port=8001)

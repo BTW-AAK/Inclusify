@@ -2,8 +2,8 @@ from dotenv import load_dotenv
 import google.generativeai as genai
 load_dotenv() 
 
-def translate_to_inclusive(inputt="Who is the chairman",tone="Neutral"):
-        genai.configure(api_key="AIzaSyDHt49ArGg0gQZWevD3zNzOBQzKtcOTHmM")
+def translate_to_inclusive(inputt="Who is the chairman"):
+        genai.configure(api_key="AIzaSyDebrPyaBVnyh2oLD7odFjrBKSahQBv-08")
         model = genai.GenerativeModel('gemini-pro')
 
         defaults = {
@@ -18,32 +18,15 @@ def translate_to_inclusive(inputt="Who is the chairman",tone="Neutral"):
         }
 
         prompt = f""" 
-        Rules:
-        1. Replace non-inclusive language with inclusive words.
-        2. Do not change words unless necessary.
-        3. Keep the output the same if it is already inclusive.
-        4. If the input is blank, provide blank output.
-        5. Tone should be {tone}
-
-        Examples:
-        1. "Stewardess" => "Flight Attendant"
-        2. "Blindly following" => "Following aimlessly"
-        3. "Chairman" => "Chairperson"
-        4. "Lame" => "Unimpressive"
-        5. "Manpower" => "Workforce"
-        6. "Man up and face the challenge" => "Be resilient and face the challenge"
-        7. "Is that the flight attendant?" => "Is that the flight attendant?"
-        8. "Stop aimlessly following instructions" => "Stop aimlessly following instructions"
-        9. "Don't cry like a girl" => "Express your emotions without conforming to gender stereotypes"
-        10. "" => ""
-        
-        Input is: {inputt}
-        Output is: 
+        The following is a description of an event a student wishes to host, 
+        The student is hosting an event to help other students with a particular skills. 
+        Rewrite this to description to be precise, and formal:
+        {{inputt}}
         """
      
         response = model.generate_content(prompt)
         print("Result: " + response.text)
         print("__")
-        print("Tone: "+ tone)
+        print(inputt)
         return response.text
 
