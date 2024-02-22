@@ -46,7 +46,7 @@ header {
   #right_column{
     background-image: url("/static/images/login-abstract.svg");
     background-repeat: no-repeat;
-    background-size: 100%;
+    background-size: 110%;
   }
 
   #logoImg{
