@@ -121,13 +121,18 @@
             document.getElementById("emailError").hidden = false;
             console.log("ERROR WAS IN EMAIL");
           }
+          if (error.code == "auth/invalid-email") {
+            document.getElementById("emailError").hidden = false;
+            console.log("ERROR WAS IN EMAIL");
+          }
           if (error.code == "auth/wrong-password") {
             document.getElementById("passwordError").hidden = false;
             console.log("ERROR WAS IN PASSWORD");
           }
           if (
             error.code != "auth/wrong-password" &&
-            error.code != "auth/user-not-found"
+            error.code != "auth/user-not-found" &&
+            error.code != "auth/invalid-email"
           ) {
             alert(error);
           }
