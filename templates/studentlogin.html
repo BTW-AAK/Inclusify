@@ -1,0 +1,231 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <script src="studentlogin.js"></script>
+        
+    <script src="https://www.gstatic.com/firebasejs/8.4.3/firebase-app.js"></script>
+    <script src="https://www.gstatic.com/firebasejs/8.4.3/firebase-auth.js"></script>
+    <script src="https://www.gstatic.com/firebasejs/8.4.3/firebase-firestore.js"></script>
+    <script src="https://www.gstatic.com/firebasejs/8.4.3/firebase-database.js"></script>
+
+    <style>
+        body {
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            height: 100vh;
+            margin: 0;
+            font-family: 'Arial', sans-serif;
+            background-color: #f0f0f0; /* Light background color */
+            color: #333; /* Dark text color */
+        }
+
+        .onboarding-container {
+            text-align: center;
+            padding: 30px; /* Increased padding for better spacing */
+            border: 2px solid #ccc; /* Border around the container */
+            border-radius: 10px; /* Rounded corners for the container */
+            background-color: #fff; /* White background color */
+            float: left;
+        }
+
+        #lockimage1{
+            float: right;
+            scale: 0.78;
+            margin-top: 5px;
+            background-color: #fff;
+        }
+
+        h1 {
+            color: #926A64; /* Blue header color */
+            font-size: 24px; /* Larger font size */
+            margin-bottom: 20px;
+        }
+
+        form {
+            margin-top: 20px;
+        }
+
+        label {
+            display: block;
+            margin-bottom: 8px;
+        }
+
+        input {
+            padding: 10px;
+            margin-bottom: 15px;
+            width: 100%;
+            box-sizing: border-box; /* Include padding in width */
+        }
+
+        button {
+            font-size: 18px;
+            padding: 12px 20px;
+            background-color: #926A64; /* Blue button color */
+            color: #fff; /* White text color */
+            border: none;
+            cursor: pointer;
+            border-radius: 5px; /* Rounded corners for buttons */
+        }
+
+        button:hover {
+            background-color: #5b3f3b; /* Darker shade on hover */
+        }
+
+        p {
+            margin-top: 15px;
+        }
+
+        a {
+            color: #926A64; /* Blue link color */
+            text-decoration: none;
+            cursor: pointer;
+        }
+
+        a:hover {
+            text-decoration: underline;
+        }
+    </style>
+    <title>Student Login</title>
+</head>
+<body>
+
+<div class="onboarding-container">
+    <h1>A platform to <span id="purpose"></span></h1>
+    
+    <!-- Student Login Form -->
+    <form id="studentLoginForm">
+        <label for="studentEmail">Email:</label>
+        <input type="email" id="studentEmail" required>
+        <label for="studentPassword">Password:</label>
+        <input type="password" id="studentPassword" required>
+        <button id="button-login" type="button" onclick="signIn('student')">Sign In</button>
+        <p>Don't have an account? <a href="#" onclick="showSignupForm('student')">Sign Up</a></p>
+    </form>
+
+    <!-- Student Signup Form -->
+    <form id="studentSignupForm" style="display: none;">
+        <label for="studentSignUpEmail">Email:</label>
+        <input type="email" id="studentSignUpEmail" required>
+        <label for="studentSignUpPassword">Password:</label>
+        <input type="password" id="studentSignUpPassword" required>
+        <label for="studentConfirmPassword">Confirm Password:</label>
+        <input type="password" id="studentConfirmPassword" required>
+        <button type="button" id="button-signup" onclick="signUp('student')">Sign Up</button>
+        <p>Already have an account? <a href="#" onclick="showLoginForm('student')">Sign In</a></p>
+    </form>
+</div>
+<img src="cool123.jpeg" id="lockimage1" alt="">
+<script>
+    const purposeText = document.getElementById('purpose');
+    const purposes = ['connect', 'learn', 'help', 'educate'];
+    let purposeIndex = 0;
+
+    function rotatePurpose() {
+        purposeText.textContent = purposes[purposeIndex];
+        purposeIndex = (purposeIndex + 1) % purposes.length;
+    }
+
+    setInterval(rotatePurpose, 2000); // Rotate every 2 seconds
+
+    function showSignupForm(userType) {
+        document.getElementById(`${userType}LoginForm`).style.display = 'none';
+        document.getElementById(`${userType}SignupForm`).style.display = 'block';
+    }
+
+    function showLoginForm(userType) {
+        document.getElementById(`${userType}LoginForm`).style.display = 'block';
+        document.getElementById(`${userType}SignupForm`).style.display = 'none';
+    }
+
+    function signUp(userType) {
+        const email = document.getElementById(`${userType}SignUpEmail`).value;
+        const password = document.getElementById(`${userType}SignUpPassword`).value;
+        const confirmPassword = document.getElementById(`${userType}ConfirmPassword`).value;
+
+        if (password !== confirmPassword) {
+            alert('Passwords do not match.');
+            return;
+        }
+    }
+</script>
+
+<script>
+document.addEventListener('DOMContentLoaded', function() {
+
+// Initialize Firebase
+var firebaseConfig = {
+apiKey: "AIzaSyBYXsZoY4ureGqifd3T_Oel_2p1oApM7E0",
+authDomain: "complaint-forum-7c068.firebaseapp.com",
+projectId: "complaint-forum-7c068",
+storageBucket: "complaint-forum-7c068.appspot.com",
+messagingSenderId: "583711939039",
+appId: "1:583711939039:web:8e01f490c22fdf775c4c6a"
+
+};
+firebase.initializeApp(firebaseConfig);
+
+// Get a reference to the sign-up button
+var signupButton = document.querySelector('#button-signup');
+var loginButton = this.querySelector('#button-login')
+var database = firebase.database();
+if (signupButton) {
+
+  // Handle sign-up button clicks
+  signupButton.addEventListener('click', function(event) {
+    event.preventDefault(); // prevent the form from submitting
+    console.log("the button clicked")
+    // Get user info
+    var email = document.querySelector('#studentSignUpEmail').value;
+    var password = document.querySelector('#studentSignUpPassword').value;
+var school = ""
+    // Sign up the user with Firebase Authentication
+    firebase.auth().createUserWithEmailAndPassword(email, password)
+    .then(function(userCredential) {
+      // Signed in
+      var user = userCredential.user;  
+      window.location.href = "scheduling";
+      // Update user display name
+    })
+    .catch(function(error) {
+      // Handle errors
+      console.error(error);
+      alert(error)
+    });
+
+  });
+
+}
+
+if (loginButton){
+loginButton.addEventListener('click', function(event) {
+event.preventDefault(); 
+console.log("button was clicked")
+var emailL = document.querySelector("#studentEmail").value;
+var passwordL = document.querySelector("#studentPassword").value;
+console.log(document.querySelector("#studentEmail").value)
+
+firebase.auth().signInWithEmailAndPassword(emailL, passwordL)
+
+.then(function(userCredential) {
+// User is signed in
+var user = userCredential.user;
+console.log("User is signed in");
+alert("signed in sucessfully!")
+
+// Redirect the user to the homepage
+window.location.href = "scheduling";
+})
+.catch(function(error) {
+// Handle errors
+console.error(error);
+alert(error)
+});
+})
+}})
+
+</script>
+</body>
+</html>

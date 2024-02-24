@@ -27,26 +27,62 @@
     <header>
     </header>
     <main>
-        <form action="/translate">
+        <form id="myForm" action="/translate">
         <div class="text-areas">
             <div class="input-text">
                 <input name="input" id="input" placeholder="event description" value="{{title}}"></input>
             </div>
-    <input type="text" id="name" name="name" placeholder="Your Name" required><br><br>
-    <input type="text" id="email" name="email" placeholder="date" required><br><br>
-    <input type="text" id="tips" name="tips" placeholder="Event Name" required><br><br>
+    <input type="text" id="name" name="name" placeholder="Your Name" required value="{{name}}"><br><br>
+    <input type="text" id="email" name="email" placeholder="date" required value="{{email}}"><br><br>
+    <input type="text" id="tips" name="tips" placeholder="Event Name" required value="{{tips}}"><br><br>
     <input id="Qualifications" name="Qualifications" placeholder="Your Qualifications" required value="{{Qualification}}"></input><br><br>
-    <input type="text" id="title" name="title" placeholder="Category" required><br><br>
+    <input type="text" id="category" name="title" placeholder="Category" required value="{{category}}"><br><br>
         <!-- <div class="output-text"> -->
                 <!-- <label for="outputText">Output Text</label> -->
                 <!-- <textarea id="outputText" placeholder="Results show here..." readonly></textarea> -->
             <!-- </div> -->
         </div>
         <div class="generate-button">
-            <button type="submit">Generate</button>
+            <button type="submit">submit</button>
         </div>
     </form>
+
     </main>
+
+
+    <script>
+        firebase.initializeApp(firebaseConfig);
+        const db = firebase.firestore();
+
+        document.getElementById("myForm").addEventListener("submit", function(event) {
+            event.preventDefault(); // Prevent the default form submission
+
+            const input = document.getElementById("input").value;
+            const name = document.getElementById("name").value;
+            const email = document.getElementById("email").value;
+            const tips = document.getElementById("tips").value;
+            const qualifications = document.getElementById("Qualifications").value;
+            const category = document.getElementById("category").value;
+
+            // Add data to Firestore
+            db.collection("StudentEntries").add({
+                input: input,
+                name: name,
+                email: email,
+                tips: tips,
+                qualifications: qualifications,
+                category: category
+            })
+            .then(function(docRef) {
+                console.log("Document written with ID: ", docRef.id);
+                // Clear form fields after successful submission
+                document.getElementById("myForm").reset();
+            })
+            .catch(function(error) {
+                console.error("Error adding document: ", error);
+            });
+        });
+    </script>
 </body>
 </html>
 
@@ -55,3 +91,4 @@
 
 
 
+action="/translate"

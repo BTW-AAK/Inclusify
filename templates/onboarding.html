@@ -1,0 +1,114 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <style>
+       body {
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    height: 100vh;
+    margin: 0;
+    font-family: 'Arial', sans-serif;
+    background: linear-gradient(to bottom right, #c94b4b, #4b134f); /* Gradient background */
+}
+
+h1 {
+    color: white; /* Change to white color for the header */
+    font-size: 2em; /* Use em for relative sizing */
+    text-align: center; /* Center the header text */
+    margin: 0; /* Remove margin */
+}
+
+.button-container {
+    display: flex;
+    justify-content: center; /* Center buttons horizontally */
+    width: 80%; /* Adjust the width as per the image */
+    margin-top: 30px; /* Add some margin on top */
+}
+
+button {
+    font-size: 1em; /* Use em for relative sizing */
+    padding: 20px; /* Adjust padding */
+    margin: 10px; /* Add margin between buttons */
+    color: white; /* Text color */
+    border: none;
+    cursor: pointer;
+    border-radius: 20px; /* Rounded corners for buttons */
+    transition: background-color 0.3s, transform 0.3s; /* Smooth transition for background and transform */
+    width: 45%; /* Set the width to 45% of the parent container */
+    height: 150px; /* Set a fixed height */
+}
+
+/* Specific styles for the Teacher button */
+#teacher-button {
+    background-color: #f39c12; /* Orange color for the teacher button */
+}
+
+/* Specific styles for the Student button */
+#student-button {
+    background-color: #2980b9; /* Blue color for the student button */
+}
+
+button:hover {
+    background-color: #34495e; /* Darken button color on hover */
+    transform: translateY(-3px); /* Lift button up on hover */
+}
+
+/* Add the styles for the sign-in header */
+#sign-in-header {
+    font-size: 1.5em;
+    color: white;
+    margin-bottom: 30px;
+    text-transform: uppercase; /* Make the text uppercase */
+}
+    </style>
+    <title>Onboarding Page</title>
+</head>
+<body>
+
+<h1>A platform to <span id="purpose"></span></h1>
+    
+<div class="button-container">
+    <button onclick="slideTo('studentlogin.html', 'left')">Log in as Student</button>
+    <button onclick="slideTo('teacherlogin.html', 'right')">Log in as Teacher</button>
+</div>
+
+<script>
+    const purposeText = document.getElementById('purpose');
+    const purposes = ['connect', 'learn', 'help', 'educate'];
+    let purposeIndex = 0;
+
+    function rotatePurpose() {
+        purposeText.textContent = purposes[purposeIndex];
+        purposeIndex = (purposeIndex + 1) % purposes.length;
+    }
+
+    setInterval(rotatePurpose, 2000); // Rotate every 2 seconds
+
+    function slideTo(page, direction) {
+        const buttons = document.querySelectorAll('button');
+        buttons.forEach(button => {
+            button.disabled = true; // Disable buttons during animation
+        });
+
+        if (direction === 'left') {
+            document.body.style.overflowX = 'hidden'; // Hide horizontal scrollbar
+            buttons[1].style.transform = 'translateX(100%)'; // Slide right button out
+            setTimeout(() => {
+                window.location.href = page;
+            }, 500); // Wait 0.5s before redirecting
+        } else if (direction === 'right') {
+            document.body.style.overflowX = 'hidden'; // Hide horizontal scrollbar
+            buttons[0].style.transform = 'translateX(-100%)'; // Slide left button out
+            setTimeout(() => {
+                window.location.href = page;
+            }, 500); // Wait 0.5s before redirecting
+        }
+    }
+</script>
+
+</body>
+</html>
