@@ -186,7 +186,7 @@ var school = ""
     .then(function(userCredential) {
       // Signed in
       var user = userCredential.user;  
-      window.location.href = "scheduling";
+      window.location.href = "Calendar";
       // Update user display name
     })
     .catch(function(error) {
@@ -216,7 +216,7 @@ console.log("User is signed in");
 alert("signed in sucessfully!")
 
 // Redirect the user to the homepage
-window.location.href = "scheduling";
+window.location.href = "Calendar";
 })
 .catch(function(error) {
 // Handle errors

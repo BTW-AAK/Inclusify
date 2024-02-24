@@ -1,19 +1,4 @@
 <!DOCTYPE html>
-<!-- <html lang="en">
-<head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Input</title>
-    <link rel="stylesheet" href="{{ url_for('static', filename='css/styles.css') }}">
-</head>
-<body>
-    <h1>Input</h1>
-    <form action="/weather">
-        <input type="text" name="input" id="input" placeholder="Input" />
-        <button type="submit">Submit</button>
-    </form>
-</body>
-</html> -->
 <html lang="en">
 <head>
     <meta charset="UTF-8">
@@ -21,13 +6,28 @@
     <title>Inclusify App</title>
     <link rel="stylesheet" href="{{ url_for('static', filename='css/style.css') }}">
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css">
+    <script src="https://www.gstatic.com/firebasejs/9.6.0/firebase-app.js"></script>
+    <script src="https://www.gstatic.com/firebasejs/9.6.0/firebase-firestore.js"></script>
+    <script src="https://www.gstatic.com/firebasejs/8.4.3/firebase-app.js"></script>
+    <script src="https://www.gstatic.com/firebasejs/8.4.3/firebase-auth.js"></script>
+    <script src="https://www.gstatic.com/firebasejs/8.4.3/firebase-firestore.js"></script>
+    <script src="https://www.gstatic.com/firebasejs/8.4.3/firebase-database.js"></script>
 
+    <script>const firebaseConfig = {
+        apiKey: "AIzaSyDT8ocCOaWAZgsVeP35gkxCIMwfnFhDNWI",
+authDomain: "chatapp-39171.firebaseapp.com",
+databaseURL: "https://chatapp-39171-default-rtdb.firebaseio.com",
+projectId: "chatapp-39171",
+storageBucket: "chatapp-39171.appspot.com",
+messagingSenderId: "935527712182",
+appId: "1:935527712182:web:c94b370a2c15e800c9ad17"
+    };</script>
 </head>
 <body>
     <header>
     </header>
     <main>
-        <form id="myForm" action="/translate">
+        <form id="firebaseSubmit">
         <div class="text-areas">
             <div class="input-text">
                 <input name="input" id="input" placeholder="event description" value="{{title}}"></input>
@@ -37,10 +37,6 @@
     <input type="text" id="tips" name="tips" placeholder="Event Name" required value="{{tips}}"><br><br>
     <input id="Qualifications" name="Qualifications" placeholder="Your Qualifications" required value="{{Qualification}}"></input><br><br>
     <input type="text" id="category" name="title" placeholder="Category" required value="{{category}}"><br><br>
-        <!-- <div class="output-text"> -->
-                <!-- <label for="outputText">Output Text</label> -->
-                <!-- <textarea id="outputText" placeholder="Results show here..." readonly></textarea> -->
-            <!-- </div> -->
         </div>
         <div class="generate-button">
             <button type="submit">submit</button>
@@ -54,7 +50,7 @@
         firebase.initializeApp(firebaseConfig);
         const db = firebase.firestore();
 
-        document.getElementById("myForm").addEventListener("submit", function(event) {
+        document.getElementById("firebaseSubmit").addEventListener("submit", function(event) {
             event.preventDefault(); // Prevent the default form submission
 
             const input = document.getElementById("input").value;
@@ -76,19 +72,19 @@
             .then(function(docRef) {
                 console.log("Document written with ID: ", docRef.id);
                 // Clear form fields after successful submission
-                document.getElementById("myForm").reset();
+                document.getElementById("firebaseSubmit").reset();
+                window.location.href = 'Teacherend';
             })
             .catch(function(error) {
                 console.error("Error adding document: ", error);
             });
         });
+
+
     </script>
+    
 </body>
 </html>
 
 
 
-
-
-
-action="/translate"

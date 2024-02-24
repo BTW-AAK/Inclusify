@@ -4,9 +4,17 @@ from waitress import serve
 
 app = Flask(__name__)
 @app.route('/')
-@app.route('/login')
-def startLogin():
+def onboarding():
+    return render_template('onboarding.html')
+
+@app.route('/studentLogin')
+def StudentLogin():
     return render_template('studentlogin.html')
+
+@app.route('/teacherLogin')
+def TeacherLogin():
+    return render_template('teacherlogin.html')
+
 
 @app.route('/scheduling')
 def index():
@@ -31,6 +39,15 @@ def get_weather():
         tips = tips, 
          category = category, 
     )
+
+@app.route('/Teacherend')
+def submittedSchedule():
+    return render_template('Teacherend.html')
+
+
+@app.route('/Calendar')
+def calendar():
+    return render_template('calendar.html')
 
 if __name__ == "__main__" :
     # serve(app, host="0.0.0.0", port=8000)
