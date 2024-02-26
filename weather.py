@@ -28,7 +28,7 @@ def translate_to_inclusive(inputt="Who is the chairman",tone="Neutral"):
 
         Examples:
         1. "Stewardess" => "Flight Attendant"
-        2. "Blindly following" => "Following aimlessly"
+        2. "Blindly" => "aimlessly"
         3. "Chairman" => "Chairperson"
         4. "Lame" => "Unimpressive"
         5. "Manpower" => "Workforce"
