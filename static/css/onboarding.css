@@ -1,51 +1,48 @@
-@import url('https://fonts.googleapis.com/css2?family=Readex+Pro:wght@160..700&display=swap');
-@import url('https://fonts.googleapis.com/css2?family=Roboto+Mono&display=swap');
+@import url("https://fonts.googleapis.com/css2?family=Readex+Pro:wght@160..700&display=swap");
+@import url("https://fonts.googleapis.com/css2?family=Roboto+Mono&display=swap");
 
-body{
-    background-image: url("/static/images/Gray-white.png");
-    background-repeat: no-repeat;
-    background-size: 100% 100%;
-    text-align: center;
-    height: 935px;
+body {
+  background-image: url("/static/images/Gray-white.png");
+  background-repeat: no-repeat;
+  background-size: 100% 100%;
+  text-align: center;
+  height: 935px;
 }
 
-
-
-#Container{
-    width: 70%;
-    margin: auto;
-    display: block;
-    padding-top: 40px;
-    z-index: -1;
+#Container {
+  width: 70%;
+  margin: auto;
+  display: block;
+  padding-top: 40px;
+  z-index: -1;
 }
 
-#loginButtonCont{
-    position:absolute;
-    top: 80%;
-    left: 59%;
-    transform: translate(-50%, -50%);
+#loginButtonCont {
+  position: absolute;
+  top: 80%;
+  left: 59%;
+  transform: translate(-50%, -50%);
 }
 
-#signupButtonCont{
-    position:absolute;
-    top: 70%;
-    left: 59%;
-    transform: translate(-50%, -50%);
+#signupButtonCont {
+  position: absolute;
+  top: 70%;
+  left: 59%;
+  transform: translate(-50%, -50%);
 }
 
-.OnboardingButton{
-    height: 60px;
-    width: 190px;
-    background-color: #7C5FFF;
-    color: #fff;
-    font-family: 'Readex Pro', sans-serif; 
-    border-radius: 8px;
-    border: 0px;
-    font-size: 20px;
-    cursor: pointer;
+.OnboardingButton {
+  height: 60px;
+  width: 190px;
+  background-color: #7c5fff;
+  color: #fff;
+  font-family: "Readex Pro", sans-serif;
+  border-radius: 8px;
+  border: 0px;
+  font-size: 20px;
+  cursor: pointer;
 }
 
-.OnboardingButton:hover{
-    background-color: #8d74fd;
-
+.OnboardingButton:hover {
+  background-color: #8d74fd;
 }

@@ -105,9 +105,3 @@ def analysis(inputt="Who is the chairman"):
         print(json_analysis)
         
         return json_analysis
-
-
-# The input 
-
-# Print the resulting JSON object
-

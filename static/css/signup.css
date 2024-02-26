@@ -1,133 +1,124 @@
-@import url('https://fonts.googleapis.com/css2?family=Readex+Pro:wght@160..700&display=swap');
+@import url("https://fonts.googleapis.com/css2?family=Readex+Pro:wght@160..700&display=swap");
 
-@import url('https://fonts.googleapis.com/css2?family=Roboto+Mono&display=swap');
-
-
+@import url("https://fonts.googleapis.com/css2?family=Roboto+Mono&display=swap");
 
 body {
-    margin: 0;
-    font-family: 'Arial', sans-serif;
-    background-image: url("/static/images/Background.png");
-    background-repeat: no-repeat;
-    background-size: 100% 100%;
+  margin: 0;
+  font-family: "Arial", sans-serif;
+  background-image: url("/static/images/Background.png");
+  background-repeat: no-repeat;
+  background-size: 100% 100%;
 }
-
-
 
 header {
-    position: relative;
-    display: flex;
-    justify-content: center; 
-    align-items: center;
-    height: 60px; 
-    background-color: #6c63ff; /* Header Color */
+  position: relative;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  height: 60px;
+  background-color: #6c63ff; /* Header Color */
 }
-
 
 .row {
-    display: flex;
-    width: 100%;
-    height: 100%;
-  }
-  
-  /* Create two equal columns that sits next to each other */
-
-  #left_column{
-    flex: 60%;
-    background-image: url("/static/images/Pink-purple-gradient.png");
-    background-repeat: no-repeat;
-    background-size: 100%;
-    height: 955px;
-  }
-
-  #right_column{
-    flex: 40%;
-    background-image: url("/static/images/Ball-image.svg");
-    background-repeat: no-repeat;
-    background-size: 100%;
-    background-clip: border-box;
-  }
-
-  #logoImg{
-    margin-top: 30px;
-    margin-left: 30px;
-    height: 90px;
-    margin-left: -60px;
-  }
-
-  #centered-left-col{
-    text-align: center;
-  }
-
-  #Signuptitle{
-    padding-top: 55px;
-    padding-bottom: 20px;
-    margin-left: 200px;
-    font-family: 'Readex Pro', sans-serif; 
-    font-size: 92px;
-    font-weight: medium;
-    color: white;
-  }
-
-  .S-inputCont{
-    margin-left: 200px;
+  display: flex;
+  width: 100%;
+  height: 100%;
 }
 
-.S-input{
-    height: 40px;
-    width: 620px;
-    padding: 15px;
-    margin-top: 20px;
-    border-radius: 10px;
-    border: 1px solid #aaa;
-    background-color: #F5F5F5;
-    font-size: 16px;
-    color: #292929;
-    font-family: 'Roboto Mono', sans-serif; 
+/* Create two equal columns that sits next to each other */
 
-
+#left_column {
+  flex: 60%;
+  background-image: url("/static/images/Pink-purple-gradient.png");
+  background-repeat: no-repeat;
+  background-size: 100%;
+  height: 955px;
 }
-::placeholder{
-    font-size: 16px;
-    color: #3f3f3f;
-    font-family: 'Roboto Mono', sans-serif; 
 
-
+#right_column {
+  flex: 40%;
+  background-image: url("/static/images/Ball-image.svg");
+  background-repeat: no-repeat;
+  background-size: 100%;
+  background-clip: border-box;
 }
-.error{
-    margin-left: 205px;
-    font-family: 'Readex Pro', sans-serif; 
-    font-size: 14px;
-    margin-top: 5px;
-    color: #eee;
+
+#logoImg {
+  margin-top: 30px;
+  margin-left: 30px;
+  height: 90px;
+  margin-left: -60px;
+}
+
+#centered-left-col {
+  text-align: center;
+}
+
+#Signuptitle {
+  padding-top: 55px;
+  padding-bottom: 20px;
+  margin-left: 200px;
+  font-family: "Readex Pro", sans-serif;
+  font-size: 92px;
+  font-weight: medium;
+  color: white;
+}
+
+.S-inputCont {
+  margin-left: 200px;
+}
+
+.S-input {
+  height: 40px;
+  width: 620px;
+  padding: 15px;
+  margin-top: 20px;
+  border-radius: 10px;
+  border: 1px solid #aaa;
+  background-color: #f5f5f5;
+  font-size: 16px;
+  color: #292929;
+  font-family: "Roboto Mono", sans-serif;
+}
+::placeholder {
+  font-size: 16px;
+  color: #3f3f3f;
+  font-family: "Roboto Mono", sans-serif;
+}
+.error {
+  margin-left: 205px;
+  font-family: "Readex Pro", sans-serif;
+  font-size: 14px;
+  margin-top: 5px;
+  color: #eee;
 }
 a {
-    color: #eee;
-  }
-#switcher{
-    color: #eee;
-    font-family: 'Readex Pro', sans-serif; 
-    font-size: 16px;
-    margin-left: 205px;
-    margin-top: 5px;
+  color: #eee;
+}
+#switcher {
+  color: #eee;
+  font-family: "Readex Pro", sans-serif;
+  font-size: 16px;
+  margin-left: 205px;
+  margin-top: 5px;
 }
 
-#button-Container{
-    margin-left: 205px;
-    padding-top: 20px;
+#button-Container {
+  margin-left: 205px;
+  padding-top: 20px;
 }
-#button-signup{
-    width: 300px;
-    height: 60px;
-    font-size: 20px;
-    font-family: 'Readex Pro', sans-serif; 
-    border-radius: 5px;
-    border: 1px;
-    background-color: #73C1C6;
-    color: #eee;
+#button-signup {
+  width: 300px;
+  height: 60px;
+  font-size: 20px;
+  font-family: "Readex Pro", sans-serif;
+  border-radius: 5px;
+  border: 1px;
+  background-color: #73c1c6;
+  color: #eee;
 }
 
-#button-signup:hover{
-    transition: color 0.4s ease;
-    background-color: #7fc9ce;
+#button-signup:hover {
+  transition: color 0.4s ease;
+  background-color: #7fc9ce;
 }
