@@ -78,8 +78,9 @@
     console.log(document.querySelector("#emailL").value);
 
     firebase
-      .auth()
-      .signInWithEmailAndPassword(emailL, passwordL)
+    .auth()
+    .signInWithEmailAndPassword(
+    emailL, passwordL)
 
       .then(function (userCredential) {
         // User is signed in

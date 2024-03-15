@@ -65,24 +65,7 @@ header {
   text-align: center;
 }
 
-.L-input {
-  height: 30px;
-  width: 380px;
-  text-align: center;
-  padding: 10px;
-  margin: 10px;
-  border-radius: 10px;
-  border: 1px solid #aaa;
-  background-color: #f5f5f5;
-  font-size: 16px;
-  color: #292929;
-  font-family: "Roboto Mono", sans-serif;
-}
-::placeholder {
-  font-size: 16px;
-  color: #3f3f3f;
-  font-family: "Roboto Mono", sans-serif;
-}
+
 .error {
   margin-left: 95px;
   font-family: "Readex Pro", sans-serif;
@@ -101,19 +84,36 @@ header {
 
 #button-Container {
   text-align: center;
+  /*!Position*/
   padding-top: 20px;
 }
 #button-login {
-  width: 250px;
-  height: 40px;
+  width: 250px; /*! Size*/
+  height: 40px; /*! Size*/
   font-size: 20px;
-  font-family: "Readex Pro", sans-serif;
-  border-radius: 5px;
+  font-family:"Readex Pro",sans-serif; 
+  /*! Font family*/
+  border-radius: 5px;  
   border: 1px;
-  background-color: #73c1c6;
-}
-
-#button-login:hover {
+  background-color: #73c1c6;}
+#button-login:hover{
   transition: color 0.4s ease;
-  background-color: #7fc9ce;
-}
+  background-color: #7fc9ce;}
+.L-input {
+  height: 30px; /*! Size*/
+  width: 380px; /*! Size*/
+  text-align: center;
+  color: #292929;/*!Font color*/
+  padding: 10px;/*!Position*/
+  margin: 10px;
+  border-radius: 10px;
+  border: 1px solid #aaa;
+  background-color: #f5f5f5;
+  font-size: 16px;
+
+  font-family: "Roboto Mono", sans-serif;}
+  ::placeholder {
+    font-size: 16px;
+    color: #3f3f3f;
+    font-family: "Roboto Mono", sans-serif;
+  }

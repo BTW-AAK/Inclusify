@@ -53,16 +53,15 @@ def get_weather():
     timestamp = datetime.utcnow()
 
     json_analysis = analysis(inputt)
-    user = Users(typeofnonI=json_analysis['TypeNL'], mostUsedN=json_analysis['UsedN'], mostUsedI=json_analysis['UsedI'], timestamp=timestamp)
+    user = Users(typeofnonI=json_analysis['TypeNL'],mostUsedN=json_analysis['UsedN'], mostUsedI=json_analysis['UsedI'], timestamp=timestamp)
     db.session.add(user)
     db.session.commit()
 
 
     return render_template(
-        "translated.html",
-        inputt=inputt,
-        title=output,
-    )
+    "translated.html",
+    inputt=inputt,
+    title=output,)
 
 
 @app.route('/analytics')

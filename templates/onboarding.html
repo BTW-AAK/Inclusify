@@ -5,6 +5,8 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Inclusify App</title>
     <link rel="stylesheet" href="{{ url_for('static', filename='css/onboarding.css') }}">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
+
 </head>
 <body>
     <div id="back-background">
@@ -12,11 +14,13 @@
     <img src="{{ url_for('static', filename='images/Onboarding-content.png' ) }}" class="image" id="Container"/>
     
     <div class="OnboardingButtonCont" id="signupButtonCont">    
-        <button onclick="window.location.href='/signup'" class="OnboardingButton">Sign Up</button>
+        <button onclick="window.location.href='/signup'"
+         class="OnboardingButton">Sign Up <i class="fa fa-arrow-circle-right" aria-hidden="true"></i>
+        </button>
     </div>
-
     <div class="OnboardingButtonCont" id="loginButtonCont">    
-        <button onclick="window.location.href='/login'" class="OnboardingButton">Login</button>
+        <button onclick="window.location.href='/login'"
+          class="OnboardingButton">Login <i class="fa fa-arrow-circle-right" aria-hidden="true"></i></button>
     </div>
 </div>
 </body>

@@ -46,8 +46,17 @@ nav ul {
   justify-content: center;
   gap: 20px;
 }
-
-nav ul li a {
+h1{
+  font-family: "Sen", sans-serif;
+  color: white;
+  text-decoration: none;
+  display: flex;
+  align-items: center;
+  gap: 8px;
+  font-size: 24px;
+  text-emphasis: none;
+}
+h1 ,nav ul li a {
   font-family: "Sen", sans-serif;
   color: white;
   text-decoration: none;
@@ -173,20 +182,20 @@ textarea {
   height: 360px;
 }
 
-.analytic-containers {
-  display: flex;
+.analytic-containers{
+display: flex;
   justify-content: space-around;
   margin: 20px;
 }
 
 .left-analytics,
-.right-analytics {
-  flex-basis: 45%;
+.right-analytics{
+flex-basis: 45%;
   padding: 10px;
 }
 
 .actual-analytic-cont {
-  width: 100%;
+  width: 100% ;
   height: 650px; /* Adjust based on actual size required */
   margin-top: 10px;
   padding: 10px;
@@ -218,7 +227,7 @@ h2 {
   font-family: "Readex Pro", sans-serif;
 }
 
-#most_common_words_div {
+.most_common_words_div {
   font-family: "Sen", sans-serif;
 }
 

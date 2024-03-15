@@ -10,11 +10,11 @@ body {
 }
 
 #Container {
-  width: 70%;
-  margin: auto;
+  width: 70%;  /*! width of container*/
+  margin: auto; /*! Center the image*/
   display: block;
   padding-top: 40px;
-  z-index: -1;
+  z-index: -1; /*! Send layer behind*/
 }
 
 #loginButtonCont {
@@ -22,6 +22,8 @@ body {
   top: 80%;
   left: 59%;
   transform: translate(-50%, -50%);
+  border: none; /* Remove borders */
+  color: white; /* White text */
 }
 
 #signupButtonCont {
@@ -29,15 +31,16 @@ body {
   top: 70%;
   left: 59%;
   transform: translate(-50%, -50%);
+  border: none; /* Remove borders */
+  color: white; /* White text */
 }
 
 .OnboardingButton {
-  height: 60px;
-  width: 190px;
-  background-color: #7c5fff;
-  color: #fff;
-  font-family: "Readex Pro", sans-serif;
-  border-radius: 8px;
+  height: 60px; width: 190px; /*! Size */
+  color: #fff; /*! Font Color */
+  border-radius: 8px; /*! Corner Radius */
+  background-color: #5b48b2;
+  font-family: "Readex Pro", sans-serif; 
   border: 0px;
   font-size: 20px;
   cursor: pointer;
@@ -45,4 +48,5 @@ body {
 
 .OnboardingButton:hover {
   background-color: #8d74fd;
+  /*!On Hover change button color */
 }

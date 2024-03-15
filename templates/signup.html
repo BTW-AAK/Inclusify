@@ -34,7 +34,7 @@
             <img src="{{ url_for('static', filename='images/logo.svg' ) }}" class="image" id="logoImg"/>
         </div>
         <div #centered-left-col>                
-            <div id="Signuptitle">Sign Up</div>
+            <div h1 id="Signuptitle">Sign Up</div>
 
             <div class="S-inputCont" id="name-div">
                 <input class="S-input"  name="name" id="nameS" placeholder="Name">
@@ -88,17 +88,19 @@
     // Handle errors
     console.log(error.code);
     if(error.code=="auth/invalid-email"){
-        document.getElementById('Error').innerHTML = "Please enter a valid email address."; 
-        console.log("ERROR WAS IN EMAIL")
-    }
+    document.getElementById('Error').innerHTML = 
+    "Please enter a valid email address."; 
+    //changing error message
+    console.log("ERROR WAS IN EMAIL")} 
+    //logging exact error
     if(error.code=="auth/weak-password"){
-        document.getElementById('Error').innerHTML = "Please enter a password with at least 6 characters.";  
-        console.log("ERROR WAS IN PASSWORD")
-
-    }
+    document.getElementById('Error').innerHTML = 
+    "Please enter a password with at least 6 characters."; 
+    //changing error message 
+    console.log("ERROR WAS IN PASSWORD")} 
+    //logging exact error
     if(error.code != "auth/invalid-email" && error.code!="auth/weak-password") {
-        alert(error)
-    }
+    alert(error)}
     });
     }
     )
